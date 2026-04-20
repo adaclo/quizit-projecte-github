@@ -18,12 +18,66 @@
       </div>
     </header>
 
-    <main>
+    <main id="gamemode">
       <section>
         <!-- Title -->
         <div align="center">
           <h1>PREGUNTA QUIZ</h1>
           <p>Selecciona el modo de juego que quieres jugar:</p>
+        </div>
+        <br>
+
+        <!-- Options  -->
+        <div align="center">
+          <table>
+            <tr>
+              <td>
+                <button onclick="">
+                  <strong>Opción A:</strong><br>
+                  Ciberseguridad
+                </button>
+              </td>
+
+              <td>
+                <button onclick="">
+                  <strong>Opción B:</strong><br>
+                  Sistemas Informáticos
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <button onclick="">
+                  <strong>Option C:</strong><br>
+                  Redes
+                </button>
+              </td>
+
+              <td>
+                <button onclick="">
+                  <strong>Option D:</strong><br>
+                  Programación
+                </button>
+              </td>
+              <td>
+                <button onclick="">
+                  <strong>Option E:</strong><br>
+                  Todos
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <main id="questions" hidden>
+      <section>
+        <!-- Title -->
+        <div align="center">
+          <h1>PREGUNTA QUIZ (<span id="gamemode">GAMEMODE</span>)</h1>
+          <p>Selecciona la respuesta correcta (<span id="points">puntos</span>):</p>
         </div>
         <br>
 
@@ -60,17 +114,12 @@
                   Programación
                 </button>
               </td>
-              <td>
-                <button>
-                  <strong>Option E:</strong><br>
-                  Todos
-                </button>
-              </td>
             </tr>
           </table>
         </div>
       </section>
     </main>
+
   </div>
 </body>
 </html>
