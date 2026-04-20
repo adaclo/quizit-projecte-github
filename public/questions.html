@@ -5,121 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizIt</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script type="text/javascript" src="js/script.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/script.js" defer></script>
 </head>
 <body>
-    
-  <div>
     <header>
-      <div>
-        <div >QuizIt</div>
-      </div>
+        <div class="logo">QuizIt</div>
+        <button id="dark-mode-toggle">Alternar Modo</button>
     </header>
 
-    <main id="gamemode">
-      <section>
-        <!-- Title -->
-        <div align="center">
-          <h1>PREGUNTA QUIZ</h1>
-          <p>Selecciona el modo de juego que quieres jugar:</p>
-        </div>
-        <br>
-
-        <!-- Options  -->
-        <div align="center">
-          <table>
-            <tr>
-              <td>
-                <button onclick="">
-                  <strong>Opción A:</strong><br>
-                  Ciberseguridad
-                </button>
-              </td>
-
-              <td>
-                <button onclick="">
-                  <strong>Opción B:</strong><br>
-                  Sistemas Informáticos
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <button onclick="">
-                  <strong>Option C:</strong><br>
-                  Redes
-                </button>
-              </td>
-
-              <td>
-                <button onclick="">
-                  <strong>Option D:</strong><br>
-                  Programación
-                </button>
-              </td>
-              <td>
-                <button onclick="">
-                  <strong>Option E:</strong><br>
-                  Todos
-                </button>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </section>
+    <main id="gamemode-section">
+        <section align="center">
+            <h1>PREGUNTA QUIZ</h1>
+            <p>Selecciona el modo de juego que quieres jugar:</p>
+            <br>
+            <div class="menu-buttons">
+                <button onclick="startQuiz('ciberseguridad')"><strong>Opción A:</strong><br>Ciberseguridad</button>
+                <button onclick="startQuiz('sistemas')"><strong>Opción B:</strong><br>Sistemas Informáticos</button>
+                <button onclick="startQuiz('redes')"><strong>Opción C:</strong><br>Redes</button>
+                <button onclick="startQuiz('programacion')"><strong>Opción D:</strong><br>Programación</button>
+                <button onclick="startQuiz('todos')"><strong>Opción E:</strong><br>Todos</button>
+            </div>
+        </section>
     </main>
 
-    <main id="questions" hidden>
-      <section>
-        <!-- Title -->
-        <div align="center">
-          <h1>PREGUNTA QUIZ (<span id="gamemode">GAMEMODE</span>)</h1>
-          <p>Selecciona la respuesta correcta (<span id="points">puntos</span>):</p>
-        </div>
-        <br>
+    <main id="questions-section" style="display: none;">
+        <section align="center">
+            <h1>PREGUNTA QUIZ (<span id="display-category">MODO</span>)</h1>
+            <p>Aciertos: <span id="score-counter">0</span></p>
+            
+            <div class="question-container">
+                <h2 id="question-text">Aquí irá la pregunta</h2>
+            </div>
 
-        <!-- Options  -->
-        <div align="center">
-          <table>
-            <tr>
-              <td>
-                <button>
-                  <strong>Opción A:</strong><br>
-                  Ciberseguridad
-                </button>
-              </td>
-
-              <td>
-                <button>
-                  <strong>Opción B:</strong><br>
-                  Sistemas Informáticos
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <button>
-                  <strong>Option C:</strong><br>
-                  Redes
-                </button>
-              </td>
-
-              <td>
-                <button>
-                  <strong>Option D:</strong><br>
-                  Programación
-                </button>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </section>
+            <div class="options-grid">
+                <button class="answer-btn" onclick="checkAnswer('A')"><strong>Opción A:</strong><br><span id="text-A"></span></button>
+                <button class="answer-btn" onclick="checkAnswer('B')"><strong>Opción B:</strong><br><span id="text-B"></span></button>
+                <button class="answer-btn" onclick="checkAnswer('C')"><strong>Opción C:</strong><br><span id="text-C"></span></button>
+                <button class="answer-btn" onclick="checkAnswer('D')"><strong>Opción D:</strong><br><span id="text-D"></span></button>
+            </div>
+        </section>
     </main>
-
-  </div>
 </body>
 </html>
