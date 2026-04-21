@@ -1,10 +1,10 @@
-let quizData = null; 
+let quizData = null;
 let currentIndex = 0;
 let correctAnswersCount = 0;
 
 async function loadQuizData() {
     try {
-        const response = await fetch('../json/preguntes.json'); 
+        const response = await fetch('../json/preguntes.json');
         if (!response.ok) throw new Error("No se pudo cargar el JSON");
         quizData = await response.json();
         console.log("Datos cargados correctamente");
@@ -14,8 +14,44 @@ async function loadQuizData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadQuizData(); 
+    loadQuizData();
+// 1. Recuperar los datos guardados en el localStorage
+    const finalScore = localStorage.getItem('lastScore') || 0;
+    const totalQuestions = localStorage.getItem('totalQuestions') || 0;
+    
+    // Opcional: Si guardaste el nombre del jugador en el inicio
+    const playerName = localStorage.getItem('playerName') || "Adrian";
 
+    // 2. Referenciar los elementos del HTML
+    const scoreElement = document.getElementById('score');
+    const totalElement = document.getElementById('total');
+    const playerElement = document.getElementById('player');
+    const restartButton = document.querySelector('button');
+
+    // 3. Insertar los datos en el HTML
+    if (scoreElement) {
+        scoreElement.textContent = `${finalScore}/${totalQuestions}`;
+    }
+
+    if (totalElement) {
+        totalElement.textContent = totalQuestions;
+    }
+
+    if (playerElement) {
+        playerElement.textContent = playerName;
+    }
+
+    // 4. Configurar el botón de reiniciar
+    if (restartButton) {
+        restartButton.addEventListener('click', () => {
+            // Limpiamos los datos del juego anterior antes de volver
+            localStorage.removeItem('lastScore');
+            localStorage.removeItem('totalQuestions');
+            
+            // Redirigir a la página principal (ajusta el nombre si es distinto)
+            window.location.href = 'index.html'; 
+        });
+    }
     const toggleButton = document.getElementById('dark-mode-toggle');
     if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
 
@@ -52,8 +88,10 @@ function startQuiz(categoryId) {
 
 function showNextQuestion() {
     if (currentIndex >= currentQuestions.length) {
-        alert(`¡Fin! Aciertos: ${correctAnswersCount}`);
-        resetGame();
+        localStorage.setItem('lastScore', correctAnswersCount);
+        localStorage.setItem('totalQuestions', currentQuestions.length);
+
+        window.location.href = '../public/results.html';
         return;
     }
 
@@ -64,7 +102,6 @@ function showNextQuestion() {
     document.getElementById('text-C').textContent = q.options.C;
     document.getElementById('text-D').textContent = q.options.D;
 }
-
 function checkAnswer(selectedOption) {
     const q = currentQuestions[currentIndex];
 
