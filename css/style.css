@@ -41,16 +41,6 @@ header {
     font-size: 1.2rem;
 }
 
-#dark-mode-toggle {
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 4px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
 /* Aquest es el contenidor main */
 main {
     background: var(--bg-white);
@@ -70,29 +60,17 @@ h1 {
     margin-bottom: 10px;
 }
 
-.button-resposta {
-        background-color: var(--white);
-        color : var(--black);
-        border: var(--border-thick) solid var(--black);
-        outline: 2px solid var(--primary-blue);
-        outline-offset: -6px;
-        padding: 20px;
-        border-radius: 15px;
-        font-weight: bold;
-        cursor: pointer;
-        text-align: center;
-        transition: all 0,2s;
+/* Butons de selecció i resposta */
+.menu-buttons, .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
 }
 
-.button-resposta:hover {
-        background-color: var(--white);
-        transform: scale(1.05);
-}
-
-.button-restart {
-        background-color : var(--primary-blue);
-        color : var(--white);
-        border: none;
+/* Botó de "Todos" que ocupi tota la fila */
+.menu-buttons button:last-child {
+    grid-column: span 2;
 }
 
 /* MODE OSCUR */
