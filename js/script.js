@@ -14,54 +14,44 @@ async function loadQuizData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadQuizData();
-// 1. Recuperar los datos guardados en el localStorage
-    const finalScore = localStorage.getItem('lastScore') || 0;
-    const totalQuestions = localStorage.getItem('totalQuestions') || 0;
-    
-    // Opcional: Si guardaste el nombre del jugador en el inicio
-    const playerName = localStorage.getItem('playerName') || "Adrian";
+    loadQuizData(); 
 
-    // 2. Referenciar los elementos del HTML
     const scoreElement = document.getElementById('score');
     const totalElement = document.getElementById('total');
     const playerElement = document.getElementById('player');
-    const restartButton = document.querySelector('button');
+    const restartButton = document.querySelector('button[onclick=""], .restart-btn'); // Buscamos el botón de reinicio
 
-    // 3. Insertar los datos en el HTML
-    if (scoreElement) {
+    if (scoreElement && totalElement) {
+        const finalScore = localStorage.getItem('lastScore') || 0;
+        const totalQuestions = localStorage.getItem('totalQuestions') || 0;
+        const playerName = localStorage.getItem('playerName') || "Adrian";
+
         scoreElement.textContent = `${finalScore}/${totalQuestions}`;
-    }
-
-    if (totalElement) {
         totalElement.textContent = totalQuestions;
+        if (playerElement) playerElement.textContent = playerName;
     }
 
-    if (playerElement) {
-        playerElement.textContent = playerName;
-    }
-
-    // 4. Configurar el botón de reiniciar
     if (restartButton) {
         restartButton.addEventListener('click', () => {
-            // Limpiamos los datos del juego anterior antes de volver
             localStorage.removeItem('lastScore');
             localStorage.removeItem('totalQuestions');
-            
-            // Redirigir a la página principal (ajusta el nombre si es distinto)
             window.location.href = 'index.html'; 
         });
     }
+
     const toggleButton = document.getElementById('dark-mode-toggle');
-    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+    
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
 
-    toggleButton.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    });
-});
-
-function startQuiz(categoryId) {
+    if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+    }
+});function startQuiz(categoryId) {
     if (!quizData) {
         return;
     }
@@ -90,17 +80,39 @@ function showNextQuestion() {
     if (currentIndex >= currentQuestions.length) {
         localStorage.setItem('lastScore', correctAnswersCount);
         localStorage.setItem('totalQuestions', currentQuestions.length);
-
-        window.location.href = '../public/results.html';
+        window.location.href = 'results.html';
         return;
     }
 
     const q = currentQuestions[currentIndex];
+    
+    let optionsArray = [
+        { key: 'A', text: q.options.A },
+        { key: 'B', text: q.options.B },
+        { key: 'C', text: q.options.C },
+        { key: 'D', text: q.options.D }
+    ];
+
+    for (let i = optionsArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
+    }
+
     document.getElementById('question-text').textContent = q.text;
-    document.getElementById('text-A').textContent = q.options.A;
-    document.getElementById('text-B').textContent = q.options.B;
-    document.getElementById('text-C').textContent = q.options.C;
-    document.getElementById('text-D').textContent = q.options.D;
+
+    const buttons = document.querySelectorAll('.options-grid .answer-btn');
+    const ids = ['A', 'B', 'C', 'D'];
+
+    buttons.forEach((btn, index) => {
+        const option = optionsArray[index];
+        
+        const textSpan = document.getElementById(`text-${ids[index]}`);
+        if (textSpan) {
+            textSpan.textContent = option.text;
+        }
+
+        btn.onclick = () => checkAnswer(option.key);
+    });
 }
 function checkAnswer(selectedOption) {
     const q = currentQuestions[currentIndex];
