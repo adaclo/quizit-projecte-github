@@ -4,25 +4,100 @@
       "id": "ciberseguridad",
       "questions": [
         { "text": "¿Qué técnica suplanta identidad para robar datos?", "options": { "A": "Phishing", "B": "Backdoor", "C": "Brute Force", "D": "Firewall" }, "correct": "A" },
-        { "text": "¿Qué puerto usa HTTPS por defecto?", "options": { "A": "80", "B": "21", "C": "443", "D": "22" }, "correct": "C" }
+        { "text": "¿Qué puerto usa HTTPS por defecto?", "options": { "A": "80", "B": "21", "C": "443", "D": "22" }, "correct": "C" },
+        { "text": "¿Qué es malware?", "options": { "A": "Software malicioso", "B": "Hardware", "C": "Red", "D": "Usuario" }, "correct": "A" },
+        { "text": "¿Qué ataque prueba contraseñas automáticamente?", "options": { "A": "DDoS", "B": "Brute Force", "C": "Phishing", "D": "Spoofing" }, "correct": "B" },
+        { "text": "¿Qué significa MITM?", "options": { "A": "Man in the Middle", "B": "Move in the Machine", "C": "Main Internet Tool", "D": "Multi Internal Method" }, "correct": "A" },
+        { "text": "¿Qué hace un firewall?", "options": { "A": "Filtrar tráfico", "B": "Guardar archivos", "C": "Ejecutar programas", "D": "Crear redes" }, "correct": "A" },
+        { "text": "¿Qué protocolo es seguro?", "options": { "A": "HTTP", "B": "FTP", "C": "HTTPS", "D": "Telnet" }, "correct": "C" },
+        { "text": "¿Qué ataque satura un servidor?", "options": { "A": "Phishing", "B": "DDoS", "C": "Sniffing", "D": "MITM" }, "correct": "B" },
+        { "text": "¿Qué es una vulnerabilidad?", "options": { "A": "Error explotable", "B": "Virus", "C": "Red", "D": "Clave" }, "correct": "A" },
+        { "text": "¿Qué es un antivirus?", "options": { "A": "Protección contra malware", "B": "Red", "C": "CPU", "D": "Archivo" }, "correct": "A" },
+        { "text": "¿Qué es spoofing?", "options": { "A": "Suplantación", "B": "Cifrado", "C": "Compresión", "D": "Almacenamiento" }, "correct": "A" },
+        { "text": "¿Qué protocolo cifra datos?", "options": { "A": "SSL/TLS", "B": "FTP", "C": "HTTP", "D": "DNS" }, "correct": "A" },
+        { "text": "¿Qué es ransomware?", "options": { "A": "Secuestro de datos", "B": "Antivirus", "C": "Firewall", "D": "Router" }, "correct": "A" },
+        { "text": "¿Qué es un exploit?", "options": { "A": "Uso de vulnerabilidad", "B": "Virus", "C": "Red", "D": "Clave" }, "correct": "A" },
+        { "text": "¿Qué es 2FA?", "options": { "A": "Doble autenticación", "B": "Firewall", "C": "Router", "D": "Antivirus" }, "correct": "A" },
+        { "text": "¿Qué es un keylogger?", "options": { "A": "Registra teclas", "B": "Cifra datos", "C": "Protege red", "D": "Envía correos" }, "correct": "A" },
+        { "text": "¿Qué es ingeniería social?", "options": { "A": "Manipular personas", "B": "Programar", "C": "Red", "D": "Hardware" }, "correct": "A" },
+        { "text": "¿Qué hace un IDS?", "options": { "A": "Detecta intrusos", "B": "Cifra datos", "C": "Borra archivos", "D": "Ejecuta apps" }, "correct": "A" },
+        { "text": "¿Qué es hashing?", "options": { "A": "Función unidireccional", "B": "Cifrado reversible", "C": "Red", "D": "Hardware" }, "correct": "A" },
+        { "text": "¿Qué es phishing por SMS?", "options": { "A": "Smishing", "B": "Vishing", "C": "Spoofing", "D": "Sniffing" }, "correct": "A" }
       ]
     },
     {
       "id": "sistemas",
       "questions": [
-        { "text": "¿Cuál es un sistema de archivos nativo de Linux?", "options": { "A": "NTFS", "B": "EXT4", "C": "FAT32", "D": "HFS" }, "correct": "B" }
+        { "text": "¿Cuál es un sistema de archivos Linux?", "options": { "A": "EXT4", "B": "NTFS", "C": "FAT32", "D": "HFS" }, "correct": "A" },
+        { "text": "¿Qué es el kernel?", "options": { "A": "Núcleo del SO", "B": "App", "C": "Disco", "D": "Red" }, "correct": "A" },
+        { "text": "¿Comando para listar archivos?", "options": { "A": "ls", "B": "cd", "C": "rm", "D": "pwd" }, "correct": "A" },
+        { "text": "¿Qué es una VM?", "options": { "A": "Máquina virtual", "B": "CPU", "C": "RAM", "D": "Red" }, "correct": "A" },
+        { "text": "¿Sistema de Microsoft?", "options": { "A": "Windows", "B": "Linux", "C": "Unix", "D": "Ubuntu" }, "correct": "A" },
+        { "text": "¿Comando para cambiar directorio?", "options": { "A": "cd", "B": "ls", "C": "mv", "D": "cp" }, "correct": "A" },
+        { "text": "¿Qué es RAM?", "options": { "A": "Memoria volátil", "B": "Disco", "C": "CPU", "D": "Red" }, "correct": "A" },
+        { "text": "¿Qué hace chmod?", "options": { "A": "Permisos", "B": "Borrar", "C": "Copiar", "D": "Listar" }, "correct": "A" },
+        { "text": "¿Qué es un proceso?", "options": { "A": "Programa en ejecución", "B": "Archivo", "C": "Carpeta", "D": "Red" }, "correct": "A" },
+        { "text": "¿Qué es swap?", "options": { "A": "RAM en disco", "B": "CPU", "C": "Red", "D": "Firewall" }, "correct": "A" },
+        { "text": "¿Qué comando elimina archivos?", "options": { "A": "rm", "B": "ls", "C": "cp", "D": "cd" }, "correct": "A" },
+        { "text": "¿Qué es BIOS?", "options": { "A": "Firmware", "B": "App", "C": "Archivo", "D": "Red" }, "correct": "A" },
+        { "text": "¿Qué es un daemon?", "options": { "A": "Proceso en segundo plano", "B": "Virus", "C": "Archivo", "D": "Red" }, "correct": "A" },
+        { "text": "¿Qué es NTFS?", "options": { "A": "Sistema de archivos", "B": "Red", "C": "CPU", "D": "RAM" }, "correct": "A" },
+        { "text": "¿Qué es un usuario root?", "options": { "A": "Administrador", "B": "Invitado", "C": "App", "D": "Archivo" }, "correct": "A" },
+        { "text": "¿Qué comando copia archivos?", "options": { "A": "cp", "B": "rm", "C": "ls", "D": "cd" }, "correct": "A" },
+        { "text": "¿Qué es uptime?", "options": { "A": "Tiempo encendido", "B": "RAM", "C": "CPU", "D": "Red" }, "correct": "A" },
+        { "text": "¿Qué es un paquete?", "options": { "A": "Software instalable", "B": "Archivo", "C": "Red", "D": "CPU" }, "correct": "A" },
+        { "text": "¿Qué es systemd?", "options": { "A": "Gestor de servicios", "B": "CPU", "C": "Red", "D": "Archivo" }, "correct": "A" },
+        { "text": "¿Qué es un log?", "options": { "A": "Registro", "B": "Archivo ejecutable", "C": "CPU", "D": "Red" }, "correct": "A" }
       ]
     },
     {
       "id": "redes",
       "questions": [
-        { "text": "¿En qué capa OSI trabaja el protocolo IP?", "options": { "A": "Física", "B": "Enlace", "C": "Red", "D": "Sesión" }, "correct": "C" }
+        { "text": "¿Capa OSI de IP?", "options": { "A": "Red", "B": "Física", "C": "Sesión", "D": "Aplicación" }, "correct": "A" },
+        { "text": "¿Dispositivo que enruta?", "options": { "A": "Router", "B": "Switch", "C": "Hub", "D": "PC" }, "correct": "A" },
+        { "text": "¿Qué es DNS?", "options": { "A": "Resuelve nombres", "B": "Correo", "C": "Web", "D": "Seguridad" }, "correct": "A" },
+        { "text": "¿Protocolo de correo?", "options": { "A": "SMTP", "B": "HTTP", "C": "FTP", "D": "SSH" }, "correct": "A" },
+        { "text": "¿Capa física OSI?", "options": { "A": "1", "B": "2", "C": "3", "D": "7" }, "correct": "A" },
+        { "text": "¿Qué es IP?", "options": { "A": "Dirección", "B": "Archivo", "C": "CPU", "D": "Cable" }, "correct": "A" },
+        { "text": "¿Función de switch?", "options": { "A": "LAN", "B": "Internet", "C": "Correo", "D": "DNS" }, "correct": "A" },
+        { "text": "¿Protocolo no fiable?", "options": { "A": "UDP", "B": "TCP", "C": "HTTP", "D": "FTP" }, "correct": "A" },
+        { "text": "¿DHCP hace?", "options": { "A": "Asignar IP", "B": "Correo", "C": "Web", "D": "Firewall" }, "correct": "A" },
+        { "text": "¿Capa aplicación?", "options": { "A": "7", "B": "4", "C": "2", "D": "1" }, "correct": "A" },
+        { "text": "¿Qué es NAT?", "options": { "A": "Traducción IP", "B": "Correo", "C": "Web", "D": "DNS" }, "correct": "A" },
+        { "text": "¿Puerto HTTP?", "options": { "A": "80", "B": "443", "C": "21", "D": "22" }, "correct": "A" },
+        { "text": "¿Qué es ping?", "options": { "A": "Test red", "B": "Correo", "C": "Web", "D": "DNS" }, "correct": "A" },
+        { "text": "¿Qué es FTP?", "options": { "A": "Transferencia archivos", "B": "Correo", "C": "DNS", "D": "Ping" }, "correct": "A" },
+        { "text": "¿Qué capa es transporte?", "options": { "A": "4", "B": "3", "C": "2", "D": "7" }, "correct": "A" },
+        { "text": "¿Qué es MAC?", "options": { "A": "Dirección física", "B": "IP", "C": "DNS", "D": "Puerto" }, "correct": "A" },
+        { "text": "¿Qué es VPN?", "options": { "A": "Red privada", "B": "Correo", "C": "Web", "D": "DNS" }, "correct": "A" },
+        { "text": "¿Qué es ancho de banda?", "options": { "A": "Capacidad red", "B": "IP", "C": "DNS", "D": "CPU" }, "correct": "A" },
+        { "text": "¿Qué es latencia?", "options": { "A": "Retraso", "B": "Velocidad", "C": "IP", "D": "DNS" }, "correct": "A" },
+        { "text": "¿Qué es gateway?", "options": { "A": "Salida red", "B": "IP", "C": "DNS", "D": "CPU" }, "correct": "A" }
       ]
     },
     {
       "id": "programacion",
       "questions": [
-        { "text": "¿Cómo se declara una constante en JS?", "options": { "A": "let", "B": "var", "C": "const", "D": "fixed" }, "correct": "C" }
+        { "text": "¿Constante en JS?", "options": { "A": "const", "B": "let", "C": "var", "D": "int" }, "correct": "A" },
+        { "text": "¿Qué es bucle?", "options": { "A": "Repetición", "B": "Variable", "C": "Clase", "D": "Condición" }, "correct": "A" },
+        { "text": "¿Igualdad estricta?", "options": { "A": "===", "B": "==", "C": "=", "D": "!=" }, "correct": "A" },
+        { "text": "¿Qué es función?", "options": { "A": "Bloque código", "B": "Variable", "C": "Loop", "D": "Clase" }, "correct": "A" },
+        { "text": "¿Lenguaje tipado fuerte?", "options": { "A": "Java", "B": "JS", "C": "Python", "D": "HTML" }, "correct": "A" },
+        { "text": "¿Qué es array?", "options": { "A": "Lista", "B": "Número", "C": "Condición", "D": "Loop" }, "correct": "A" },
+        { "text": "¿Qué hace return?", "options": { "A": "Devuelve valor", "B": "Loop", "C": "Print", "D": "If" }, "correct": "A" },
+        { "text": "¿Qué es objeto?", "options": { "A": "Clave-valor", "B": "Loop", "C": "Número", "D": "If" }, "correct": "A" },
+        { "text": "¿Qué es if?", "options": { "A": "Condicional", "B": "Loop", "C": "Clase", "D": "Array" }, "correct": "A" },
+        { "text": "¿Lenguaje navegador?", "options": { "A": "JavaScript", "B": "Python", "C": "Java", "D": "C++" }, "correct": "A" },
+        { "text": "¿Qué es clase?", "options": { "A": "Plantilla objeto", "B": "Loop", "C": "Condición", "D": "Variable" }, "correct": "A" },
+        { "text": "¿Qué es herencia?", "options": { "A": "Reutilizar código", "B": "Loop", "C": "If", "D": "Array" }, "correct": "A" },
+        { "text": "¿Qué es compilador?", "options": { "A": "Traduce código", "B": "Ejecuta", "C": "Guarda", "D": "Borra" }, "correct": "A" },
+        { "text": "¿Qué es bug?", "options": { "A": "Error", "B": "Función", "C": "Loop", "D": "Clase" }, "correct": "A" },
+        { "text": "¿Qué es IDE?", "options": { "A": "Entorno desarrollo", "B": "Lenguaje", "C": "CPU", "D": "Red" }, "correct": "A" },
+        { "text": "¿Qué es API?", "options": { "A": "Interfaz", "B": "Loop", "C": "If", "D": "Array" }, "correct": "A" },
+        { "text": "¿Qué es JSON?", "options": { "A": "Formato datos", "B": "Lenguaje", "C": "CPU", "D": "Red" }, "correct": "A" },
+        { "text": "¿Qué es null?", "options": { "A": "Sin valor", "B": "0", "C": "False", "D": "Texto" }, "correct": "A" },
+        { "text": "¿Qué es boolean?", "options": { "A": "True/False", "B": "Número", "C": "Texto", "D": "Array" }, "correct": "A" },
+        { "text": "¿Qué es loop for?", "options": { "A": "Bucle", "B": "If", "C": "Clase", "D": "Objeto" }, "correct": "A" }
       ]
     }
   ]
