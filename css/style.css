@@ -96,6 +96,10 @@ button.answer-btn:active, .menu-buttons button:active {
 }
 
 /* MODE OSCUR */
+#dark-mode-toggle {
+    background: transparent;
+}
+
 body.dark-mode {
     background-color: #111827;
 }
