@@ -8,6 +8,14 @@
     <script type="text/javascript" src="../js/script.js"></script>
 </head>
 <body>
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='index.html'">QUIZIT</div>
+            <nav>
+                <button id="dark-mode-toggle">🌓 Mode</button>
+            </nav>
+        </div>
+    </header>
     <button id="dark-mode-toggle">Cambiar modo</button>
     <h1>QuizIt</h1>
      <!-- Pantalla 1 -->
@@ -34,11 +42,11 @@
                 <p>QUIZIT</p>
             </div>
 
-            <div>
+            <div id="modal" style="display: none;">
                 <h3>Introducció</h3>
                 <p>Introdueix el teu nom de jugador a continuació:</p>
-                <input type="text" placeholder="Ex.: OriolPelucon">
-                <button>Continuar</button>
+                <input id="nameInput" type="text" placeholder="Ex.: OriolPelucon">
+                <button onclick="">Continuar</button>
             </div>
         </div>
     </div>
