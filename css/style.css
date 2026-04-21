@@ -73,6 +73,28 @@ h1 {
     grid-column: span 2;
 }
 
+button.answer-btn, .menu-buttons button {
+    background: white;
+    border: 2px solid var(--border-black);
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+button.answer-btn:hover, .menu-buttons button:hover {
+    background-color: #f9fafb;
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0px var(--border-black);
+}
+
+button.answer-btn:active, .menu-buttons button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
 /* MODE OSCUR */
 body.dark-mode {
     background-color: #111827;
