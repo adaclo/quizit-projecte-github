@@ -1,16 +1,114 @@
+/* Configuracío General */
 :root {
-    --bg-color: #ffffff;
+    --bg-color: #f3f4f6;
     --text-color: #000000;
-}
-
-.dark-mode {
-    --bg-color: #181818;
-    --text-color: #f0f0f0;
+    --card-bg: #ffffff;
+    --primary-blue: #2563eb;
+    --white: #ffffff;
+    --black: #111827;
+    --border-thick: 2px;
+    --shadow: 8px 8px 0px 0px #111827;
 }
 
 body {
     background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s; /* Suaviza el cambio */
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s; /* Suavitza el cambi */}
+
+header {
+    background-color: var(--primary-blue);
+    width: 100%;
+    max-width: 450px;
+    padding: 12px 20px;
+    border: 3px solid var(--border-black);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+#dark-mode-toggle {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Aquest es el contenidor main */
+main {
+    background: var(--bg-white);
+    width: 100%;
+    max-width: 450px;
+    border: 3px solid var(--border-black);
+    border-radius: 0 0 12px 12px;
+    padding: 30px 20px;
+    box-shadow: 10px 10px 0px var(--border-black); /* L'ombra no està acabada */
+    box-sizing: border-box;
+}
+
+h1 {
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.button-resposta {
+        background-color: var(--white);
+        color : var(--black);
+        border: var(--border-thick) solid var(--black);
+        outline: 2px solid var(--primary-blue);
+        outline-offset: -6px;
+        padding: 20px;
+        border-radius: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0,2s;
+}
+
+.button-resposta:hover {
+        background-color: var(--white);
+        transform: scale(1.05);
+}
+
+.button-restart {
+        background-color : var(--primary-blue);
+        color : var(--white);
+        border: none;
+}
+
+/* MODE OSCUR */
+body.dark-mode {
+    background-color: #111827;
+}
+
+body.dark-mode main {
+    background-color: #1f2937;
+    color: white;
+    border-color: #ffffff;
+    box-shadow: 10px 10px 0px #374151;
+}
+
+body.dark-mode .answer-btn, body.dark-mode .menu-buttons button {
+    background-color: #374151;
+    color: white;
+    border-color: #ffffff;
 }
