@@ -98,6 +98,12 @@ button.answer-btn:active, .menu-buttons button:active {
 /* MODE OSCUR */
 #dark-mode-toggle {
     background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
 }
 
 body.dark-mode {
