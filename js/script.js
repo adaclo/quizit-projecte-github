@@ -3,6 +3,7 @@ let currentIndex = 0;
 let correctAnswersCount = 0;
 let startTime;
 let timerInterval;
+let currentQuestions = [];
 async function loadQuizData() {
     try {
         const response = await fetch('../json/preguntes.json');
@@ -16,14 +17,15 @@ async function loadQuizData() {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadQuizData();
+
     const finalTime = localStorage.getItem('totalTime') || "0:00";
     const timeDisplay = document.getElementById('time');
     const scoreElement = document.getElementById('score');
     const totalElement = document.getElementById('total');
     const playerElement = document.getElementById('player');
-    const restartButton = document.querySelector('button[onclick=""], .restart-btn'); // Buscamos el botón de reinicio
-    if (timeDisplay) timeDisplay.textContent = finalTime;
+    const restartButton = document.querySelector('button[onclick=""], .restart-btn');
 
+    if (timeDisplay) timeDisplay.textContent = finalTime;
     if (scoreElement && totalElement) {
         const finalScore = localStorage.getItem('lastScore') || 0;
         const totalQuestions = localStorage.getItem('totalQuestions') || 0;
@@ -38,16 +40,45 @@ document.addEventListener('DOMContentLoaded', () => {
         restartButton.addEventListener('click', () => {
             localStorage.removeItem('lastScore');
             localStorage.removeItem('totalQuestions');
+            localStorage.removeItem('totalTime');
             window.location.href = 'index.html';
         });
     }
 
-    const toggleButton = document.getElementById('dark-mode-toggle');
+    const btnComencar = document.getElementById("btn-comencar");
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("modal-overlay");
+    const btnContinuar = document.getElementById("btn-continuar");
+    const inputNombre = document.getElementById("nameInput");
 
+    if (btnComencar && modal) {
+        btnComencar.addEventListener("click", () => {
+            modal.style.display = "block"; 
+        });
+    }
+
+    if (overlay && modal) {
+        overlay.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+    }
+
+    if (btnContinuar && inputNombre) {
+        btnContinuar.addEventListener("click", () => {
+            const nombre = inputNombre.value.trim();
+            if (nombre === "") {
+                alert("Si us plau, introdueix un nom.");
+                return;
+            }
+            localStorage.setItem("playerName", nombre);
+            window.location.href = "questions.html";
+        });
+    }
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
-
     if (toggleButton) {
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -100,7 +131,7 @@ function showNextQuestion() {
 
         localStorage.setItem('lastScore', correctAnswersCount);
         localStorage.setItem('totalQuestions', currentQuestions.length);
-        localStorage.setItem('totalTime', finalTime); // Guardamos el tiempo final
+        localStorage.setItem('totalTime', finalTime); 
 
         window.location.href = 'results.html';
         return;
@@ -167,17 +198,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnContinuar = document.getElementById("btn-continuar");
     const inputNombre = document.getElementById("nameInput");
 
-    // Abrir modal (pop-up)
     btnComencar.addEventListener("click", function () {
-        modal.style.display = "flex"; // mejor para centrar luego con CSS
+        modal.style.display = "flex";
     });
 
-    // Cerrar modal al hacer clic fuera (overlay)
     overlay.addEventListener("click", function () {
         modal.style.display = "none";
     });
 
-    // Continuar al quiz
     btnContinuar.addEventListener("click", function () {
         const nombre = inputNombre.value.trim();
 
@@ -186,10 +214,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Guardar nombre
         localStorage.setItem("nombreJugador", nombre);
 
-        // Redirigir
         window.location.href = "questions.html";
     });
 
