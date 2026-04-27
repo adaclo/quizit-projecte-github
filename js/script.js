@@ -21,7 +21,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreElement = document.getElementById('score');
     const totalElement = document.getElementById('total');
     const playerElement = document.getElementById('player');
-    const restartButton = document.querySelector('button[onclick=""], .restart-btn'); // Buscamos el botón de reinicio
+    const restartButton = document.querySelector('button[onclick=""], .restart-btn');
+    const btnComencar = document.getElementById('btn-comencar');
+    const modal = document.getElementById('modal');
+    const btnContinuar = document.getElementById('btn-continuar');
+    const nameInput = document.getElementById('nameInput');
+    if (btnComencar && modal) {
+        btnComencar.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+    }
+    if (btnContinuar && nameInput) {
+        btnContinuar.addEventListener('click', () => {
+            const nombre = nameInput.value.trim();
+
+            if (nombre !== "") {
+                localStorage.setItem('playerName', nombre);
+                window.location.href = 'questions.html';
+            } else {
+                alert("Si us plau, introdueix un nom de jugador.");
+            }
+        });
+    }
     if (timeDisplay) timeDisplay.textContent = finalTime;
 
     if (scoreElement && totalElement) {
