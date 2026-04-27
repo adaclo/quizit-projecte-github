@@ -196,6 +196,25 @@ body.dark-mode .answer-btn, body.dark-mode .menu-buttons button {
     border-color: #ffffff;
 }
 
+body.dark-mode .score-card div, body.dark-mode table td div {
+    background-color: #374151;
+    border-color: #ffffff;
+    color: white;
+    box-shadow: 6px 6px 0px #1f2937;
+}
+
+body.dark-mode footer {
+    color: white;
+}
+
+body.dark-mode #modal-content {
+    background-color: #1f2937;
+    color: white;
+    border-color: #ffffff;
+    box-shadow: 6px 6px 0px #374151;
+}
+
+
 /* CONTENEDOR DEL MODAL (pantalla completa) */
 #modal {
     display: none;
@@ -233,7 +252,6 @@ body.dark-mode .answer-btn, body.dark-mode .menu-buttons button {
 
 #modal-content h3 {
     font-size: 1.8rem;
-    color: var(--black);
     margin-bottom: 10px;
     text-transform: uppercase;
 }
