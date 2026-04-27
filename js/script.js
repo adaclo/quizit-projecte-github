@@ -3,6 +3,8 @@ let currentIndex = 0;
 let correctAnswersCount = 0;
 let startTime;
 let timerInterval;
+let currentQuestions = [];
+
 async function loadQuizData() {
     try {
         const response = await fetch('../json/preguntes.json');
@@ -16,35 +18,15 @@ async function loadQuizData() {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadQuizData();
+
     const finalTime = localStorage.getItem('totalTime') || "0:00";
     const timeDisplay = document.getElementById('time');
     const scoreElement = document.getElementById('score');
     const totalElement = document.getElementById('total');
     const playerElement = document.getElementById('player');
     const restartButton = document.querySelector('button[onclick=""], .restart-btn');
-    const btnComencar = document.getElementById('btn-comencar');
-    const modal = document.getElementById('modal');
-    const btnContinuar = document.getElementById('btn-continuar');
-    const nameInput = document.getElementById('nameInput');
-    if (btnComencar && modal) {
-        btnComencar.addEventListener('click', () => {
-            modal.style.display = 'block';
-        });
-    }
-    if (btnContinuar && nameInput) {
-        btnContinuar.addEventListener('click', () => {
-            const nombre = nameInput.value.trim();
 
-            if (nombre !== "") {
-                localStorage.setItem('playerName', nombre);
-                window.location.href = 'questions.html';
-            } else {
-                alert("Si us plau, introdueix un nom de jugador.");
-            }
-        });
-    }
     if (timeDisplay) timeDisplay.textContent = finalTime;
-
     if (scoreElement && totalElement) {
         const finalScore = localStorage.getItem('lastScore') || 0;
         const totalQuestions = localStorage.getItem('totalQuestions') || 0;
@@ -59,16 +41,45 @@ document.addEventListener('DOMContentLoaded', () => {
         restartButton.addEventListener('click', () => {
             localStorage.removeItem('lastScore');
             localStorage.removeItem('totalQuestions');
+            localStorage.removeItem('totalTime');
             window.location.href = 'index.html';
         });
     }
 
-    const toggleButton = document.getElementById('dark-mode-toggle');
+    const btnComencar = document.getElementById("btn-comencar");
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("modal-overlay");
+    const btnContinuar = document.getElementById("btn-continuar");
+    const inputNombre = document.getElementById("nameInput");
 
+    if (btnComencar && modal) {
+        btnComencar.addEventListener("click", () => {
+            modal.style.display = "block"; 
+        });
+    }
+
+    if (overlay && modal) {
+        overlay.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+    }
+
+    if (btnContinuar && inputNombre) {
+        btnContinuar.addEventListener("click", () => {
+            const nombre = inputNombre.value.trim();
+            if (nombre === "") {
+                alert("Si us plau, introdueix un nom.");
+                return;
+            }
+            localStorage.setItem("playerName", nombre); 
+            window.location.href = "questions.html";
+        });
+    }
+
+    const toggleButton = document.getElementById('dark-mode-toggle');
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
-
     if (toggleButton) {
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -77,11 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
 function startQuiz(categoryId) {
-    if (!quizData) {
-        console.error("No hay datos del quiz disponibles");
-        return;
-    }
+    if (!quizData) return;
 
     if (categoryId === 'todos') {
         currentQuestions = quizData.categories.flatMap(cat => cat.questions);
@@ -91,7 +100,6 @@ function startQuiz(categoryId) {
     }
 
     currentQuestions.sort(() => Math.random() - 0.5);
-
     currentQuestions = currentQuestions.slice(0, 20);
 
     currentIndex = 0;
@@ -105,6 +113,7 @@ function startQuiz(categoryId) {
 
     document.getElementById('gamemode-section').style.display = 'none';
     document.getElementById('questions-section').style.display = 'block';
+    
     startTime = Date.now();
     timerInterval = setInterval(() => {
         const elapsed = Date.now() - startTime;
@@ -113,8 +122,10 @@ function startQuiz(categoryId) {
             timerElement.textContent = formatTime(elapsed);
         }
     }, 1000);
+
     showNextQuestion();
 }
+
 function showNextQuestion() {
     if (currentIndex >= currentQuestions.length) {
         clearInterval(timerInterval);
@@ -129,7 +140,6 @@ function showNextQuestion() {
     }
 
     const q = currentQuestions[currentIndex];
-
     let optionsArray = [
         { key: 'A', text: q.options.A },
         { key: 'B', text: q.options.B },
@@ -137,77 +147,34 @@ function showNextQuestion() {
         { key: 'D', text: q.options.D }
     ];
 
-    for (let i = optionsArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [optionsArray[i], optionsArray[j]] = [optionsArray[j], optionsArray[i]];
-    }
+    optionsArray.sort(() => Math.random() - 0.5);
 
     document.getElementById('question-text').textContent = q.text;
-
     const buttons = document.querySelectorAll('.options-grid .answer-btn');
     const ids = ['A', 'B', 'C', 'D'];
 
     buttons.forEach((btn, index) => {
         const option = optionsArray[index];
-
         const textSpan = document.getElementById(`text-${ids[index]}`);
-        if (textSpan) {
-            textSpan.textContent = option.text;
-        }
-
+        if (textSpan) textSpan.textContent = option.text;
         btn.onclick = () => checkAnswer(option.key);
     });
 }
+
 function formatTime(ms) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
+
 function checkAnswer(selectedOption) {
     const q = currentQuestions[currentIndex];
-
     if (selectedOption === q.correct) {
         correctAnswersCount++;
-        document.getElementById('score-counter').textContent = correctAnswersCount;
-    } else {
+        const counter = document.getElementById('score-counter');
+        if (counter) counter.textContent = correctAnswersCount;
     }
-
     currentIndex++;
     showNextQuestion();
 }
-
-function resetGame() {
-    document.getElementById('gamemode-section').style.display = 'block';
-    document.getElementById('questions-section').style.display = 'none';
-}
-document.addEventListener("DOMContentLoaded", function () {
-
-    const btnComencar = document.getElementById("btn-comencar");
-    const modal = document.getElementById("modal");
-    const overlay = document.getElementById("modal-overlay");
-    const btnContinuar = document.getElementById("btn-continuar");
-    const inputNombre = document.getElementById("nameInput");
-
-    btnComencar.addEventListener("click", function () {
-        modal.style.display = "flex";
-    });
-
-    overlay.addEventListener("click", function () {
-        modal.style.display = "none";
-    });
-
-    btnContinuar.addEventListener("click", function () {
-        const nombre = inputNombre.value.trim();
-
-        if (nombre === "") {
-            alert("Si us plau, introdueix un nom.");
-            return;
-        }
-
-        localStorage.setItem("nombreJugador", nombre);
-
-        window.location.href = "questions.html";
-    });
-
-});
