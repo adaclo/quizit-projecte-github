@@ -3,6 +3,17 @@ let currentIndex = 0;
 let correctAnswersCount = 0;
 let startTime;
 let timerInterval;
+
+function updateBestScore(newScore, newTimeFormatted) {
+    const bestScore = parseInt(localStorage.getItem('bestScore')) || 0;
+    const bestTime = localStorage.getItem('bestTime') || "99:59";
+
+    // Condición: Más aciertos O (mismos aciertos y menos tiempo)
+    if (newScore > bestScore || (newScore === bestScore && newTimeFormatted < bestTime)) {
+        localStorage.setItem('bestScore', newScore);
+        localStorage.setItem('bestTime', newTimeFormatted);
+    }
+}
 let currentQuestions = [];
 async function loadQuizData() {
     try {
@@ -14,34 +25,31 @@ async function loadQuizData() {
         console.error("Error crítico:", error);
     }
 }
-function updateHighScoreUI() {
-    const bestScore = localStorage.getItem('bestScore') || 0;
-    const bestTime = localStorage.getItem('bestTime') || "00:00";
-    const bestPlayer = localStorage.getItem('bestPlayer') || "Nadie";
-
-    const scoreDisplay = document.getElementById('player-best-score');
-    const timeDisplay = document.getElementById('player-time');
-    const nameDisplay = document.getElementById('player-name');
-
-    if (scoreDisplay) scoreDisplay.textContent = bestScore;
-    if (timeDisplay) timeDisplay.textContent = bestTime;
-    if (nameDisplay) {
-        const currentPlayer = localStorage.getItem('playerName') || "Invitat";
-        nameDisplay.textContent = currentPlayer;
-    }
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
     loadQuizData();
-    updateHighScoreUI()
+
     const finalTime = localStorage.getItem('totalTime') || "0:00";
     const timeDisplay = document.getElementById('time');
     const scoreElement = document.getElementById('score');
     const totalElement = document.getElementById('total');
     const playerElement = document.getElementById('player');
     const restartButton = document.querySelector('button[onclick=""], .restart-btn');
+    const displayBestScore = document.getElementById('player-best-score');
+    const displayBestTime = document.getElementById('player-time');
+    const displayWelcomeName = document.getElementById('player-name');
 
+
+    if (displayWelcomeName) {
+        displayWelcomeName.textContent = localStorage.getItem('playerName') || "Invitat";
+    }
+    if (displayBestScore) {
+        displayBestScore.textContent = localStorage.getItem('bestScore') || "0";
+    }
+    if (displayBestTime) {
+        displayBestTime.textContent = localStorage.getItem('bestTime') || "00:00";
+    }
+    
     if (timeDisplay) timeDisplay.textContent = finalTime;
     if (scoreElement && totalElement) {
         const finalScore = localStorage.getItem('lastScore') || 0;
@@ -70,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnComencar && modal) {
         btnComencar.addEventListener("click", () => {
-            modal.style.display = "block"; 
+            modal.style.display = "block";
         });
     }
 
@@ -148,7 +156,10 @@ function showNextQuestion() {
 
         localStorage.setItem('lastScore', correctAnswersCount);
         localStorage.setItem('totalQuestions', currentQuestions.length);
-        localStorage.setItem('totalTime', finalTime); 
+        localStorage.setItem('totalTime', finalTime);
+
+        // Lógica de récord personal
+        updateBestScore(correctAnswersCount, finalTime);
 
         window.location.href = 'results.html';
         return;
@@ -235,4 +246,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
         window.location.href = "questions.html";
     });
+
 });
