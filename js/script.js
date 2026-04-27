@@ -14,10 +14,27 @@ async function loadQuizData() {
         console.error("Error crítico:", error);
     }
 }
+function updateHighScoreUI() {
+    const bestScore = localStorage.getItem('bestScore') || 0;
+    const bestTime = localStorage.getItem('bestTime') || "00:00";
+    const bestPlayer = localStorage.getItem('bestPlayer') || "Nadie";
+
+    const scoreDisplay = document.getElementById('player-best-score');
+    const timeDisplay = document.getElementById('player-time');
+    const nameDisplay = document.getElementById('player-name');
+
+    if (scoreDisplay) scoreDisplay.textContent = bestScore;
+    if (timeDisplay) timeDisplay.textContent = bestTime;
+    if (nameDisplay) {
+        const currentPlayer = localStorage.getItem('playerName') || "Invitat";
+        nameDisplay.textContent = currentPlayer;
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     loadQuizData();
-
+    updateHighScoreUI()
     const finalTime = localStorage.getItem('totalTime') || "0:00";
     const timeDisplay = document.getElementById('time');
     const scoreElement = document.getElementById('score');
@@ -218,5 +235,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
         window.location.href = "questions.html";
     });
-
 });
