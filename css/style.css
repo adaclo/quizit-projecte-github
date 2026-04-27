@@ -149,3 +149,38 @@ body.dark-mode .answer-btn, body.dark-mode .menu-buttons button {
     color: white;
     border-color: #ffffff;
 }
+
+/* CONTENEDOR DEL MODAL (pantalla completa) */
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* centrado */
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+/* FONDO OSCURO */
+#modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* CAJA DEL MODAL */
+#modal-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1001;
+    width: 300px;
+    text-align: center;
+}

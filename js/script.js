@@ -159,3 +159,38 @@ function resetGame() {
     document.getElementById('gamemode-section').style.display = 'block';
     document.getElementById('questions-section').style.display = 'none';
 }
+document.addEventListener("DOMContentLoaded", function () {
+
+    const btnComencar = document.getElementById("btn-comencar");
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("modal-overlay");
+    const btnContinuar = document.getElementById("btn-continuar");
+    const inputNombre = document.getElementById("nameInput");
+
+    // Abrir modal (pop-up)
+    btnComencar.addEventListener("click", function () {
+        modal.style.display = "flex"; // mejor para centrar luego con CSS
+    });
+
+    // Cerrar modal al hacer clic fuera (overlay)
+    overlay.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // Continuar al quiz
+    btnContinuar.addEventListener("click", function () {
+        const nombre = inputNombre.value.trim();
+
+        if (nombre === "") {
+            alert("Si us plau, introdueix un nom.");
+            return;
+        }
+
+        // Guardar nombre
+        localStorage.setItem("nombreJugador", nombre);
+
+        // Redirigir
+        window.location.href = "questions.html";
+    });
+
+});

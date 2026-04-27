@@ -3,61 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
     <title>QuizIt</title>
-    <script type="text/javascript" src="../js/script.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/script.js" defer></script>
 </head>
+
 <body>
+
     <header>
         <div class="nav-container">
             <div class="logo" onclick="window.location.href='index.html'">QUIZIT</div>
             <nav>
-                <button id="dark-mode-toggle">🌓 Mode</button>
+                <button id="dark-mode-toggle">Mode 🌓</button>
             </nav>
         </div>
     </header>
-    <button id="dark-mode-toggle">Cambiar modo</button>
-    <h1>QuizIt</h1>
-     <!-- Pantalla 1 -->
-    <div>
-        <div>
-            <p>QUIZIT</p>
-        </div>
 
-        <div>
-            <h2>SECCIÓ QUIZ HERO: POSA A PROVA ELS TEUS CONEIXEMENTS!</h2>  
-            <p>Explora diversos temes i posa't a prova. Fes clic a “Comença” per iniciar!</p>
-            <button>Comença</button>
-        </div>
-    </div>
+    <main>
 
-    <!-- Modal (introducció del nom) -->
-    <div>
-        <!-- Fons del modal -->
-        <div></div>
+        <!-- Pantalla inicial -->
+        <section id="pantalla-inicial">
+            <h1>QuizIt</h1>
 
-        <!-- Contingut del modal -->
-        <div>
-            <div>
+            <h2>SECCIÓ QUIZ HERO: POSA A PROVA ELS TEUS CONEIXEMENTS!</h2>
+            <p>Explora diversos temes i posa't a prova. Fes clic a «Comença» per iniciar!</p>
+
+            <!-- ESTE BOTÓN abre el modal -->
+            <button id="btn-comencar">Comença</button>
+        </section>
+
+        <!-- Modal -->
+        <div id="modal" style="display: none;">
+
+            <!-- Fondo -->
+            <div id="modal-overlay"></div>
+
+            <!-- Contenido -->
+            <div id="modal-content">
                 <p>QUIZIT</p>
-            </div>
 
-            <div id="modal" style="display: none;">
                 <h3>Introducció</h3>
                 <p>Introdueix el teu nom de jugador a continuació:</p>
+
                 <input id="nameInput" type="text" placeholder="Ex.: OriolPelucon">
-                <button onclick="">Continuar</button>
+
+                <!-- ESTE BOTÓN lo usarás en JS -->
+                <button id="btn-continuar">Continuar</button>
             </div>
         </div>
-    </div>
-    
-    <button onclick="window.location.href='questions.html'">
-        Ir a preguntas
-    </button>
 
-    <!-- Footer -->
+    </main>
+
     <footer>
         <p>© 2026 Quizit. Tots els drets reservats.</p>
     </footer>
+
 </body>
 </html>
