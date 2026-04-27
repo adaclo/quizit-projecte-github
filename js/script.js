@@ -1,7 +1,8 @@
 let quizData = null;
 let currentIndex = 0;
 let correctAnswersCount = 0;
-
+let startTime;
+let timerInterval;
 async function loadQuizData() {
     try {
         const response = await fetch('../json/preguntes.json');
@@ -14,12 +15,14 @@ async function loadQuizData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadQuizData(); 
-
+    loadQuizData();
+    const finalTime = localStorage.getItem('totalTime') || "0:00";
+    const timeDisplay = document.getElementById('time');
     const scoreElement = document.getElementById('score');
     const totalElement = document.getElementById('total');
     const playerElement = document.getElementById('player');
     const restartButton = document.querySelector('button[onclick=""], .restart-btn'); // Buscamos el botón de reinicio
+    if (timeDisplay) timeDisplay.textContent = finalTime;
 
     if (scoreElement && totalElement) {
         const finalScore = localStorage.getItem('lastScore') || 0;
@@ -35,12 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
         restartButton.addEventListener('click', () => {
             localStorage.removeItem('lastScore');
             localStorage.removeItem('totalQuestions');
-            window.location.href = 'index.html'; 
+            window.location.href = 'index.html';
         });
     }
 
     const toggleButton = document.getElementById('dark-mode-toggle');
-    
+
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
@@ -71,28 +74,40 @@ function startQuiz(categoryId) {
 
     currentIndex = 0;
     correctAnswersCount = 0;
-    
+
     const scoreCounter = document.getElementById('score-counter');
     const displayCategory = document.getElementById('display-category');
-    
+
     if (scoreCounter) scoreCounter.textContent = "0";
     if (displayCategory) displayCategory.textContent = categoryId.toUpperCase();
 
     document.getElementById('gamemode-section').style.display = 'none';
     document.getElementById('questions-section').style.display = 'block';
-
+    startTime = Date.now();
+    timerInterval = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const timerElement = document.getElementById('timer-counter');
+        if (timerElement) {
+            timerElement.textContent = formatTime(elapsed);
+        }
+    }, 1000);
     showNextQuestion();
 }
 function showNextQuestion() {
     if (currentIndex >= currentQuestions.length) {
+        clearInterval(timerInterval);
+        const finalTime = formatTime(Date.now() - startTime);
+
         localStorage.setItem('lastScore', correctAnswersCount);
         localStorage.setItem('totalQuestions', currentQuestions.length);
+        localStorage.setItem('totalTime', finalTime); // Guardamos el tiempo final
+
         window.location.href = 'results.html';
         return;
     }
 
     const q = currentQuestions[currentIndex];
-    
+
     let optionsArray = [
         { key: 'A', text: q.options.A },
         { key: 'B', text: q.options.B },
@@ -112,7 +127,7 @@ function showNextQuestion() {
 
     buttons.forEach((btn, index) => {
         const option = optionsArray[index];
-        
+
         const textSpan = document.getElementById(`text-${ids[index]}`);
         if (textSpan) {
             textSpan.textContent = option.text;
@@ -120,6 +135,12 @@ function showNextQuestion() {
 
         btn.onclick = () => checkAnswer(option.key);
     });
+}
+function formatTime(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 function checkAnswer(selectedOption) {
     const q = currentQuestions[currentIndex];
