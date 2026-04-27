@@ -51,8 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         });
     }
-});function startQuiz(categoryId) {
+});
+function startQuiz(categoryId) {
     if (!quizData) {
+        console.error("No hay datos del quiz disponibles");
         return;
     }
 
@@ -65,17 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentQuestions.sort(() => Math.random() - 0.5);
 
+    currentQuestions = currentQuestions.slice(0, 20);
+
     currentIndex = 0;
     correctAnswersCount = 0;
-    document.getElementById('score-counter').textContent = "0";
-    document.getElementById('display-category').textContent = categoryId.toUpperCase();
+    
+    const scoreCounter = document.getElementById('score-counter');
+    const displayCategory = document.getElementById('display-category');
+    
+    if (scoreCounter) scoreCounter.textContent = "0";
+    if (displayCategory) displayCategory.textContent = categoryId.toUpperCase();
 
     document.getElementById('gamemode-section').style.display = 'none';
     document.getElementById('questions-section').style.display = 'block';
 
     showNextQuestion();
 }
-
 function showNextQuestion() {
     if (currentIndex >= currentQuestions.length) {
         localStorage.setItem('lastScore', correctAnswersCount);
