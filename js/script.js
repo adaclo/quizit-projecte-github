@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 function startQuiz(categoryId) {
     if (!quizData) {
         console.error("No hay datos del quiz disponibles");
@@ -121,7 +122,7 @@ function showNextQuestion() {
 
         localStorage.setItem('lastScore', correctAnswersCount);
         localStorage.setItem('totalQuestions', currentQuestions.length);
-        localStorage.setItem('totalTime', finalTime); // Guardamos el tiempo final
+        localStorage.setItem('totalTime', finalTime); 
 
         window.location.href = 'results.html';
         return;
@@ -188,17 +189,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnContinuar = document.getElementById("btn-continuar");
     const inputNombre = document.getElementById("nameInput");
 
-    // Abrir modal (pop-up)
     btnComencar.addEventListener("click", function () {
-        modal.style.display = "flex"; // mejor para centrar luego con CSS
+        modal.style.display = "flex";
     });
 
-    // Cerrar modal al hacer clic fuera (overlay)
     overlay.addEventListener("click", function () {
         modal.style.display = "none";
     });
 
-    // Continuar al quiz
     btnContinuar.addEventListener("click", function () {
         const nombre = inputNombre.value.trim();
 
@@ -207,10 +205,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Guardar nombre
         localStorage.setItem("nombreJugador", nombre);
 
-        // Redirigir
         window.location.href = "questions.html";
     });
 
