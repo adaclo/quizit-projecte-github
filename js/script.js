@@ -2,6 +2,8 @@ let quizData = null;
 let currentIndex = 0;
 let correctAnswersCount = 0;
 let startTime;
+let bestScore = 0;
+let bestTime = "99:59";
 let timerInterval;
 
 function updateBestScore(newScore, newTimeFormatted) {
