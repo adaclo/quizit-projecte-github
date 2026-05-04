@@ -11,21 +11,29 @@
 <body>
 
     <header>
-        <div class="nav-container">
-    <div class="logo" onclick="window.location.href='index.html'">
-        <img src="../img/logo.png" alt="Logo" class="logo-img" style="width: 75px; height: auto; margin-right: 10px;">
-        QUIZIT
-    </div>
-    <nav>
-        <button id="dark-mode-toggle">Mode 🌓</button>
-        <div>
-            <div>
-                🏆 <span id="player-best-score">0</span> |
-                ⏱️ <span id="player-time">00:00</span>
+       <div class="nav-container">
+        <div class="logo" onclick="window.location.href='index.html'">
+            <img src="../img/logo.png" alt="Logo" class="logo-img">
+            <span>QUIZIT</span>
+        </div>
+
+        <div class="nav-score">
+            <div class="score-badge">
+                <span class="icon">🎯</span>
+                <span class="label">ACIERTOS:</span>
+                <span id="score-counter" class="value">0</span>
+            </div>
+            <div class="score-badge">
+                <span class="icon">⏱️</span>
+                <span class="label">TIEMPO:</span>
+                <span id="timer-counter" class="value">00:00</span>
             </div>
         </div>
-    </nav>
-</div>
+
+        <div class="nav-actions">
+            <button id="dark-mode-toggle">MODE 🌓</button>
+        </div>
+    </div>
     </header>
 
     <main>

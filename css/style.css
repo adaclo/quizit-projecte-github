@@ -20,44 +20,88 @@ body {
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
+    padding-top: 130px;
 }
 
 header {
     background-color: var(--primary-blue);
     width: 100%;
-    padding: 15px 25px;
-    justify-content: center;
-    border-bottom: 4px solid var(--black);
+    height: 90px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    border-bottom: 4px solid var(--black);
     position: fixed;
     top: 0;
     left: 0;
-    height: 70px;
     z-index: 1000;
-    box-sizing: border-box;
     box-shadow: 0 4px 0 rgba(0,0,0,0.1);
 }
 
 .nav-container {
-    width: 90%;
-    max-width: 1000px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 40px;
     align-items: center;
 }
 
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
 
-.logo {
+.nav-score {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+}
+
+.nav-actions {
+    justify-content: flex-end;
+}
+
+.nav-score, .nav-actions {
+    display: flex;
+    align-items: center;
+}
+
+.score-badge {
+    background: var(--white);
+    color: var(--black);
+    padding: 10px 20px;
+    border: 3px solid var(--black);
+    border-radius: 12px;
     font-weight: 900;
+    font-size: 1.1rem;
+    box-shadow: 4px 4px 0px var(--black);
     display: flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap;
+}
+
+.score-badge    .value {
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--white);
+    -webkit-text-stroke: 2px var(--black);
+    cursor: pointer;
 }
 
 .logo-img {
-    filter: drop-shadow(2px 2px 0px var(--black));
+    height: 65px;
+    width: auto;
+    filter: drop-shadow(3px 3px 0px var(--black));
 }
 
 /* Aquest es el contenidor main */
@@ -162,21 +206,22 @@ button.answer-btn strong {
 /* MODE OSCUR */
 #dark-mode-toggle {
     background-color: var(--black);
-    background: transparent;
-    border: 2px solid var(--white);
+    border: 3px solid var(--white);
     color: var(--white);
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s;
-    font-size: 0.8rem;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
 }
 
 #dark-mode-toggle:hover {
     background-color: var(--white);
     color: var(--black);
-    transform: scale(1.05);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--black);
 }
 
 body.dark-mode {
@@ -214,6 +259,11 @@ body.dark-mode #modal-content {
     box-shadow: 6px 6px 0px #374151;
 }
 
+body.dark-mode .score-badge {
+    background: #374151;
+    color: white;
+    border-color: white;
+}
 
 /* CONTENEDOR DEL MODAL (pantalla completa) */
 #modal {
